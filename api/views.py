@@ -42,16 +42,16 @@ def get_user_activity(username, start, end):
 
 
 def event_list(request):
-    return JsonResponse([{
+    return JsonResponse({"events": [{
         "name": event.name,
         "start": event.start,
         "end": event.end,
         "id": event.id,
-    } for event in models.Event.objects.all()])
+    } for event in models.Event.objects.all()]})
 
 
 def user_list(request):
-    return JsonResponse(get_all_users())
+    return JsonResponse({"users": get_all_users()})
 
 
 @cache_page(60)
