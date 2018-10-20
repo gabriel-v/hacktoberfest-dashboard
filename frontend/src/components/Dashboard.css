@@ -1,0 +1,13 @@
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  font-size: 24px;
+}
+
+.name {
+  font-weight: bold;
+  font-size: 30px;
+}
