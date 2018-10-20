@@ -16,8 +16,16 @@ class Command(BaseCommand):
         event = models.Event.objects.get(id=event_id)
         data = json.loads(event.cache)
         total = 0
+        have_prs = []
+        newcomers = []
         for user in data:
             userdata = data[user]
             total += len(userdata['pull_requests'])
             print(user, userdata['inactive_before_event'], len(userdata['pull_requests']))
+            if userdata['inactive_before_event']:
+                newcomers.append(user)
+            if len(userdata['pull_requests']):
+                have_prs.append(user)
         print('total: ', total, 'prs')
+        print('newcomers: ', len(newcomers), newcomers)
+        print('have prs: ', len(have_prs), have_prs)
