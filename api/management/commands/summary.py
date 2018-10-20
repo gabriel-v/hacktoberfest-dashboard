@@ -15,6 +15,9 @@ class Command(BaseCommand):
         event_id = options['event_id']
         event = models.Event.objects.get(id=event_id)
         data = json.loads(event.cache)
+        total = 0
         for user in data:
             userdata = data[user]
+            total += len(userdata['pull_requests'])
             print(user, userdata['inactive_before_event'], len(userdata['pull_requests']))
+        print('total: ', total, 'prs')
