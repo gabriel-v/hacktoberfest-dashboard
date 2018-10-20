@@ -8,7 +8,7 @@ export const FETCH_PARTICIPANTS_SUCCESS = 'fetch_participants_success'
 export const fetchParticipants = () => dispatch => {
   dispatch({ type: FETCH_PARTICIPANTS_REQUEST })
 
-  axios.get(`${ROOT_URL}/events/1`).then(response =>
+  axios.get(`${ROOT_URL}/events/1/`).then(response =>
     dispatch({
       type: FETCH_PARTICIPANTS_SUCCESS,
       payload: response.data
