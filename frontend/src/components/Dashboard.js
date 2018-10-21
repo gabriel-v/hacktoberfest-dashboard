@@ -51,11 +51,20 @@ class Dashboard extends Component {
                     ? 'Newcomer'
                     : 'Veteran'}
                 </td>
-                <td className='name'>{participant}</td>
+                <td className='name'><a href={"https://github.com/"+participant}>{participant}</a></td>
                 <td>
                   {this.props.participants[participant].pull_requests.length}
                   {' '}
                   pull requests
+                  <br/>
+                  {this.props.participants[participant].pull_requests.map((pr) => {
+                    return (
+                        <span>
+                          <a href={pr.html_url}>{pr.title}</a>
+                          <br/>
+                        </span>
+                    )
+                  })}
                 </td>
               </tr>
             )
