@@ -26,6 +26,14 @@ class Dashboard extends Component {
     const { participants } = this.props
     if (!this.props.participants) return null
     let prCount = 0
+
+    Object.values(participants).map(
+      participant => {
+        console.log(participant.pull_requests)
+        participant.pull_requests = participant.pull_requests.filter(pr => pr.merged || pr.state == 'open')
+        console.log(participant.pull_requests)
+      }
+    )
     Object.values(participants).map(
       participant => (prCount += participant.pull_requests.length)
     )
@@ -58,6 +66,7 @@ class Dashboard extends Component {
                   pull requests
                   <br/>
                   {this.props.participants[participant].pull_requests.map((pr) => {
+                    console.log(pr)
                     return (
                         <span>
                           <a href={pr.html_url}>{pr.title}</a>
