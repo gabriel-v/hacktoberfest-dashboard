@@ -9,6 +9,7 @@ pytz = "*"
 requests = "*"
 pygithub = "*"
 python-dateutil = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 
