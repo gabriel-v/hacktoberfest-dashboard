@@ -5,17 +5,17 @@ from api import github
 import json
 import time
 
+PERIOD = 2 * 60
+MIN_WAIT = 20
+
 class Command(BaseCommand):
     help = 'Query GitHub for new PR data'
 
-    def add_arguments(self, parser):
-        parser.add_argument('refresh', type=int, default=55)
-
     def handle(self, *args, **options):
-        refresh_interval = options['refresh']
         while True:
             now = time.time()
+            print("---------------------------")
             github.update_all()
             elapsed = time.time() - now
-            remaining = max(10, refresh_interval - elapsed)
+            remaining = max(MIN_WAIT, PERIOD - elapsed)
             time.sleep(remaining)
