@@ -7,6 +7,15 @@ li {
   font-size: 24px;
 }
 
+table {
+  margin: 0 auto;
+}
+
+td {
+  min-width: 25vw;
+  border: 1px solid #000;
+}
+
 .name {
   font-weight: bold;
   font-size: 30px;

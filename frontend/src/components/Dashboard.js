@@ -29,25 +29,38 @@ class Dashboard extends Component {
     Object.values(participants).map(
       participant => (prCount += participant.pull_requests.length)
     )
+    const sortedParticipants = Object.keys(
+      this.props.participants
+    ).sort((first, second) => {
+      return (
+        participants[second].pull_requests.length -
+        participants[first].pull_requests.length
+      )
+    })
+
     return (
       <div>
         <h1>TOTAL PULL REQUESTS: {prCount}</h1>
         <h3>Participants ranking:</h3>
-        <ul>
-          {Object.keys(this.props.participants)
-            .sort((first, second) => {
-              return (
-                participants[second].pull_requests.length -
-                participants[first].pull_requests.length
-              )
-            })
-            .map(this.renderParticipant)}
-        </ul>
-
-        <h3>Latest pull requests:</h3>
-        <ul>
-          {/* {Object.values(this.props.participants).sort((first, second) => ).map(this.renderActivity)} */}
-        </ul>
+        <table>
+          {sortedParticipants.map((participant, index) => {
+            return (
+              <tr key={index}>
+                <td>
+                  {this.props.participants[participant].inactive_before_event
+                    ? 'Newcomer'
+                    : 'Veteran'}
+                </td>
+                <td className='name'>{participant}</td>
+                <td>
+                  {this.props.participants[participant].pull_requests.length}
+                  {' '}
+                  pull requests
+                </td>
+              </tr>
+            )
+          })}
+        </table>
       </div>
     )
   }
